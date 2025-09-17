@@ -1,10 +1,6 @@
-package io.csg.engine
+package io.awais.cricket_championship.engine
 
-import io.awais.cricket_championship.engine.entity.BowlingStyle
-import io.awais.cricket_championship.engine.entity.Hand
-import io.awais.cricket_championship.engine.entity.Player
-import io.awais.cricket_championship.engine.entity.PlayerRole
-import io.awais.cricket_championship.engine.entity.Team
+import io.awais.cricket_championship.engine.entity.*
 import java.io.File
 import kotlin.collections.emptyMap
 
@@ -13,7 +9,7 @@ import kotlin.collections.emptyMap
  */
 object TeamLoader {
     private const val SHORT_TEAMS_DIR = "/data/teams/"
-    private const val TEAMS_DIR = "src/main/resources$SHORT_TEAMS_DIR"
+    private const val TEAMS_DIR = "libs/engine/src/main/resources$SHORT_TEAMS_DIR"
 
     /**
      * Loads all teams from the resources directory.
