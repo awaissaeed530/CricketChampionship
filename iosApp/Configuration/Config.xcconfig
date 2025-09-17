@@ -1,0 +1,7 @@
+TEAM_ID=
+
+PRODUCT_NAME=Cricket Championship
+PRODUCT_BUNDLE_IDENTIFIER=io.awais.cricket_championship.CricketChampionship$(TEAM_ID)
+
+CURRENT_PROJECT_VERSION=1
+MARKETING_VERSION=1.0
