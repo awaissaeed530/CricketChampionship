@@ -6,13 +6,6 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.hilt)
-    kotlin("kapt")
-}
-
-// Enable kapt for Hilt
-kapt {
-    correctErrorTypes = true
 }
 
 kotlin {
@@ -42,18 +35,8 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            
-            // Hilt
-            implementation(libs.dagger.hilt.android)
-            implementation(libs.dagger.hilt.navigation.compose)
+        }
 
-            implementation(project(":libs:engine"))
-        }
-        
-        // Add kapt dependency for Hilt compiler
-        dependencies {
-            add("kapt", libs.dagger.hilt.compiler.get())
-        }
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -61,8 +44,10 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+
             implementation(projects.shared)
         }
         commonTest.dependencies {
@@ -101,4 +86,3 @@ android {
 dependencies {
     debugImplementation(compose.uiTooling)
 }
-
