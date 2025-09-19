@@ -1,40 +1,29 @@
 package io.awais.cricket_championship.console
 
-import io.awais.cricket_championship.engine.*
+import io.awais.cricket_championship.engine.DataLoader
+import io.awais.cricket_championship.engine.MatchConditions
+import io.awais.cricket_championship.engine.MatchEngine
 import io.awais.cricket_championship.engine.entity.Team
 import io.awais.cricket_championship.engine.store.MatchStore
 import java.util.*
 
-/**
- * Command-line interface for the interactive cricket game
- */
-class InteractiveGameCLI() {
+class SimulatorCLI() {
     private val engine = MatchEngine()
     private val scanner = Scanner(System.`in`)
     private val availableTeams = mutableListOf<Team>()
 
-    /**
-     * Load all available teams from the teams directory
-     */
     fun loadTeams() {
-        TeamLoader.loadAllTeams().forEach { availableTeams.add(it.value) }
+        DataLoader.loadAllTeams().forEach { availableTeams.add(it.value) }
 
         if (availableTeams.size < 2) {
             throw IllegalStateException("At least 2 teams are required to start a match")
         }
     }
 
-    /**
-     * Get list of available team names
-     */
     fun getAvailableTeamNames(): List<String> = availableTeams.map { it.name }
 
-    /**
-     * Start the interactive game
-     */
     fun start() {
         loadTeams()
-        println("Teams loaded successfully!")
 
         selectTeam()
         performToss()
@@ -127,9 +116,9 @@ class InteractiveGameCLI() {
                     return input
                 }
                 println("Please enter a number between $min and $max")
-            } catch (e: InputMismatchException) {
+            } catch (_: InputMismatchException) {
                 println("Please enter a valid number")
-                scanner.next() // consume the invalid input
+                scanner.next()
             }
         }
     }

@@ -2,19 +2,12 @@ package io.awais.cricket_championship.engine
 
 import io.awais.cricket_championship.engine.entity.*
 import java.io.File
-import kotlin.collections.emptyMap
 
-/**
- * Utility class for loading team data from CSV files.
- */
-object TeamLoader {
-    private const val SHORT_TEAMS_DIR = "/data/teams/"
+object DataLoader {
+    private const val DATA_DIR = "/data"
+    private const val SHORT_TEAMS_DIR = "$DATA_DIR/teams/"
     private const val TEAMS_DIR = "libs/engine/src/main/resources$SHORT_TEAMS_DIR"
 
-    /**
-     * Loads all teams from the resources directory.
-     * @return Map of team names to Team objects
-     */
     fun loadAllTeams(): Map<String, Team> {
         return try {
             val teamsDir = File(TEAMS_DIR)
@@ -32,11 +25,6 @@ object TeamLoader {
         }
     }
 
-    /**
-     * Loads a single team by name from the resources directory.
-     * @param teamName Name of the team to load (without .csv extension)
-     * @return Team object or null if not found
-     */
     fun loadTeam(teamName: String): Team {
         val inputStream = object {}.javaClass.getResourceAsStream("$SHORT_TEAMS_DIR$teamName.csv")
             ?: throw IllegalArgumentException("Team file not found: $teamName.csv")
